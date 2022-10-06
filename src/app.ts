@@ -4,6 +4,7 @@ import UserController from './controllers/User.controller';
 import OrderController from './controllers/Order.controller';
 import LoginController from './controllers/Login.controller';
 import loginValidation from './middlewares/loginValidation';
+import productValidation from './middlewares/productValidation';
 
 const app = express();
 const productController = new ProductController();
@@ -12,7 +13,7 @@ const orderController = new OrderController();
 const loginController = new LoginController();
 
 app.use(express.json());
-app.post('/products', productController.createProduct);
+app.post('/products', productValidation, productController.createProduct);
 app.post('/users', userController.createUser);
 app.post('/login', loginValidation, loginController.login);
 app.get('/products', productController.getProducts);

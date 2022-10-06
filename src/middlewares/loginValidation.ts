@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import loginSchema from './schema';
+import { loginSchema } from './schema';
 
 const loginValidation = (req: Request, res: Response, next: NextFunction) => {
   const validation = loginSchema.validate(req.body);
