@@ -11,6 +11,6 @@ export default class UserController {
   createUser = async (req: Request, res: Response) => {
     const { body } = req;
     const user = await this.userService.createUser(body);
-    res.status(201).json(user);
+    return res.status(201).json(user);
   };
 }
