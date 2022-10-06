@@ -15,3 +15,9 @@ export interface User {
 export interface Token {
   token: string
 }
+
+export interface Order {
+  id: number
+  userId: number
+  productsId: number[]
+}
