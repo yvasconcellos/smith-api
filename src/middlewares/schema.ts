@@ -39,4 +39,13 @@ const userSchema = Joi.object({
   }),
 });
 
-export { loginSchema, productSchema, userSchema };
+const productIdSchema = Joi.object({
+  productsIds: Joi.array().items(Joi.number()).min(1).required()
+    .messages({
+      'string.empty': '"productsIds" is required',
+      'array.min': '"productsIds" must include only numbers',
+    }),
+  token: Joi.any(),
+});
+
+export { loginSchema, productSchema, userSchema, productIdSchema };

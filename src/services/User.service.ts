@@ -13,8 +13,9 @@ export default class UserService {
   }
   
   async createUser(dataUser: User) {
-    const user = await this.userModel.createUser(dataUser);
-    const token = this.generateToken(user);
+    const userId = await this.userModel.createUser(dataUser);
+    const user = await this.userModel.getUserById(userId);
+    const token = this.generateToken(user[0]);
     return { token };
   }
 
@@ -28,8 +29,8 @@ export default class UserService {
   }
 
   generateToken = (dataUser: User): string => {
-    const payload = { id: dataUser.username, name: dataUser.id };
-    const token = jwt.sign(payload, secret);
+    const payload = { id: dataUser.id, name: dataUser.username };
+    const token = jwt.sign({ data: payload }, secret);
     return token;
   };
 }

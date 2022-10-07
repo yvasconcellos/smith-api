@@ -26,3 +26,12 @@ export interface Login {
   username: string
   password: string
 }
+
+export interface CreateOrder {
+  productsIds: number[]
+}
+
+export interface ResponseOrder {
+  userId: number
+  productsIds: number[]
+}

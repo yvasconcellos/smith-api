@@ -6,6 +6,8 @@ import LoginController from './controllers/Login.controller';
 import loginValidation from './middlewares/loginValidation';
 import productValidation from './middlewares/productValidation';
 import userValidation from './middlewares/userValidation';
+import validateToken from './auth/validateJWT';
+import productIdValidation from './middlewares/productIdValidation';
 
 const app = express();
 const productController = new ProductController();
@@ -19,5 +21,6 @@ app.post('/users', userValidation, userController.createUser);
 app.post('/login', loginValidation, loginController.login);
 app.get('/products', productController.getProducts);
 app.get('/orders', orderController.getOrders);
+app.post('/orders', validateToken, productIdValidation, orderController.createOrder);
 
 export default app;
