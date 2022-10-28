@@ -32,8 +32,6 @@ export default class UserModel {
   async createOrder(dataOrder: CreateOrder, userId: number): Promise<ResponseOrder> {
     const [{ insertId }] = await this.connection
       .execute<ResultSetHeader>('INSERT INTO Trybesmith.Orders (userId) VALUES (?)', [userId]);
-    console.log('dataOrder', dataOrder.productsIds);
-    console.log('insertId', insertId);
     
     const result2 = dataOrder.productsIds.map((productId) => this
       .connection.execute<(Order[] & RowDataPacket[])>(
